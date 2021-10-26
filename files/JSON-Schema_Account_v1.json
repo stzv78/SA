@@ -1,0 +1,69 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://example.com/account.schema.json",
+    "title": "Account",
+    "description": "User account in web-service",
+    "type": "object",
+    "properties": {
+        "id": {
+            "type": "string",
+            "description": "Account uuid"
+        },
+        "type": {
+            "type": "string",
+            "description": "Account type for web-service"
+        },
+        "user": {
+            "description": "Account subscriptions for web-service",
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "User uuid"
+                },
+                "role": {
+                    "enum": [
+                        "manager",
+                        "admin",
+                        "customer"
+                    ],
+                    "type": "string"
+                }
+            },
+            "required": [
+                "id",
+                "role",
+                "first_name",
+                "last_name",
+                "email"
+            ]
+        },
+        "subscriptions": {
+            "description": "Account subscriptions for web-service",
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "name": {},
+                    "active": {},
+                    "amount": {},
+                    "date": {}
+                },
+                "required": [
+                    "name",
+                    "active",
+                    "amount",
+                    "date"
+                ]
+            },
+            "minItems": 1,
+            "uniqueItems": true
+        }
+    },
+    "required": [
+        "id",
+        "type",
+        "user",
+        "subscriptions"
+    ]
+}
